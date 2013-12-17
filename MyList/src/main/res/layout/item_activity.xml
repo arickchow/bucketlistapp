@@ -1,0 +1,74 @@
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/item_detail_container"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:layout_centerVertical="true"
+    android:orientation="horizontal">
+
+
+
+    <EditText
+        android:id="@+id/edit_item_name"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_width="fill_parent"
+        android:hint="Name"
+        android:inputType="textCapSentences"
+        />
+
+    <EditText
+        android:id="@+id/edit_item_description"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/edit_item_name"
+        android:inputType="textMultiLine|textCapSentences"
+        android:lines="2"
+        android:maxLines="2"
+        android:hint="Description"
+        />
+    <Button
+        android:id="@+id/edit_item_date_button"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/edit_item_description"
+        android:text="Set Date"
+        android:onClick="showDatePickerDialog"/>
+
+    <EditText
+        android:id="@+id/edit_item_date"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_toLeftOf="@id/edit_item_date_button"
+        android:layout_width="fill_parent"
+        android:layout_below="@id/edit_item_description"
+        android:inputType="date"
+        android:hint="mm/dd/yyyy"/>
+
+
+    <LinearLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent">
+
+
+    <Button
+        android:id="@+id/edit_item_button_create"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:text="Cancel"
+        android:layout_gravity="bottom"
+        android:onClick="cancel"/>
+    <Button
+        android:id="@+id/edit_item_button_cancel"
+        android:layout_height="?android:attr/listPreferredItemHeight"
+        android:layout_width="fill_parent"
+        android:layout_weight="1"
+        android:text="Create"
+        android:layout_gravity="bottom"
+        android:onClick="validate"/>
+    </LinearLayout>
+
+</RelativeLayout>
+
