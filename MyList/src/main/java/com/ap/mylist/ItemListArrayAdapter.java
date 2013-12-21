@@ -1,10 +1,14 @@
 package com.ap.mylist;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,14 +26,20 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
 
     private final Context context;
     private ArrayList<ListItem> content = new ArrayList<ListItem>();
+    private ArrayList<Integer> checked = new ArrayList<Integer>();
     private int mDelete = View.INVISIBLE;
     private DatabaseHandler db;
+    private int resource;
+    private int viewResource;
+    private ViewGroup mContainerView;
 
     public ItemListArrayAdapter(Context context, int resource,int textViewResource, ArrayList<ListItem> objects , DatabaseHandler db){
         super(context,resource,textViewResource,objects);
         this.content = objects;
         this.context = context;
         this.db = db;
+        this.resource = resource;
+        this.viewResource = textViewResource;
     }
 
     public void deleteToggle(boolean deleteFlag){
@@ -37,14 +47,25 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
         notifyDataSetChanged();
     }
 
+    public ArrayList<Integer> getCheckedBoxes(){
+        return checked;
+    }
+
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent){
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View view = inflater.inflate(R.layout.row_layout,null);
+        final View view = inflater.inflate(this.resource,null);
 
-        TextView textView = (TextView)view.findViewById(R.id.item_description);
+        final ViewGroup test = parent;
+
+        TextView textView = (TextView)view.findViewById(this.viewResource);
         int size = content.get(position).toString().length();
         textView.setText(content.get(position).toString().toCharArray(),0,size);
+
+        CheckBox checkBox = (CheckBox)view.findViewById(R.id.item_checkBox);
+        if(checkBox.isChecked())
+            Log.e("DEBUG",position+"");
 
         final ListItem value = content.get(position);
         ImageView imageView = (ImageView)view.findViewById(R.id.item_icon);
@@ -61,6 +82,7 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
                 }
             }
         });
+
         return view;
     }
 }

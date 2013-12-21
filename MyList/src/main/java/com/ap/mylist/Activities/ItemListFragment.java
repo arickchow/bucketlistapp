@@ -59,7 +59,7 @@ public class ItemListFragment extends ListFragment {
         bucket_id = bundle.getLong(MainActivity.ITEM_ID);
 
         items = db.getItemByBucketAndStatusId(bucket_id,fragment_id);
-        adapter = new ItemListArrayAdapter<ListItem>(this.getActivity(),R.layout.row_layout,R.id.item_description, items,db);
+        adapter = new ItemListArrayAdapter<ListItem>(this.getActivity(),R.layout.row_item_layout,R.id.item_description, items,db);
         listView.setAdapter(adapter);
 
     }
