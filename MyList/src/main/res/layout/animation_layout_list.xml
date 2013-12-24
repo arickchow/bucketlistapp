@@ -23,14 +23,7 @@
     </ScrollView>
 
     <!-- The "empty" view to show when there are no items in the "list" view defined above. -->
-    <TextView android:id="@android:id/empty"
-        style="?android:textAppearanceSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:padding="32dp"
-        android:text="@string/list_empty"
-        android:textColor="?android:textColorSecondary" />
+
 
 
 </FrameLayout>

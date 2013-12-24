@@ -20,4 +20,6 @@
     <string name="completed">Completed</string>
     <string name="incompleted">Incompleted</string>
 
+    <string name="accept">Accept Changes</string>
+
 </resources>

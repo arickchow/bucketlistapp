@@ -53,7 +53,7 @@ public class MainActivity extends ListActivity
         //showItems(list);
 
 
-        adapter = new ItemListArrayAdapter<ListItem>(this,R.layout.row_item_layout,R.id.item_description, list,db);
+        adapter = new ItemListArrayAdapter<ListItem>(this,R.layout.row_layout,R.id.item_description, list,db);
         listview.setAdapter(adapter);
     }
 
@@ -120,7 +120,7 @@ public class MainActivity extends ListActivity
 
     public ViewGroup createView(ListItem item){
         final ListItem element = item;
-        final ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.row_item_layout,mContainerView,false);
+        final ViewGroup view = (ViewGroup) LayoutInflater.from(this).inflate(R.layout.row_layout,mContainerView,false);
         ((TextView)view.findViewById(R.id.item_description)).setText(item.toString());
         ImageView imageView = (ImageView)view.findViewById(R.id.item_icon);
         imageView.setVisibility(showImage);
