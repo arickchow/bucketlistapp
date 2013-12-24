@@ -23,7 +23,7 @@ public class MyListActivity extends FragmentActivity {
 
     ViewPager mViewPager;
     ItemPagerAdapter mItemPager;
-    String[] tabs = new String[] {"In Progress","Completed","Incomplete"};
+    String[] tabs = new String[] {"In Progress","Completed"};
     int mCurrentTab;
     long item_id;
 
