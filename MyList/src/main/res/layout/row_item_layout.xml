@@ -23,9 +23,6 @@
         android:ellipsize="marquee"
         android:textSize="18sp"
         />
-
-
-
     <ImageView
         android:id="@+id/item_icon"
         android:layout_height="fill_parent"

@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +27,7 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
 
     private final Context context;
     private ArrayList<ListItem> content = new ArrayList<ListItem>();
-    private ArrayList<Integer> checked = new ArrayList<Integer>();
+    private ArrayList<ListItem> checked = new ArrayList<ListItem>();
     private int mDelete = View.INVISIBLE;
     private DatabaseHandler db;
     private int resource;
@@ -47,7 +48,7 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
         notifyDataSetChanged();
     }
 
-    public ArrayList<Integer> getCheckedBoxes(){
+    public ArrayList<ListItem> getCheckedBoxes(){
         return checked;
     }
 
@@ -63,10 +64,6 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
         int size = content.get(position).toString().length();
         textView.setText(content.get(position).toString().toCharArray(),0,size);
 
-        CheckBox checkBox = (CheckBox)view.findViewById(R.id.item_checkBox);
-        if(checkBox.isChecked())
-            Log.e("DEBUG",position+"");
-
         final ListItem value = content.get(position);
         ImageView imageView = (ImageView)view.findViewById(R.id.item_icon);
         imageView.setVisibility(mDelete);
@@ -80,6 +77,19 @@ public class ItemListArrayAdapter<T> extends ArrayAdapter<ListItem> {
                     notifyDataSetChanged();
                     Toast.makeText(context, value + " deleted!", Toast.LENGTH_SHORT).show();
                 }
+            }
+        });
+        CheckBox checkBox = (CheckBox)view.findViewById(R.id.item_checkBox);
+        checkBox.setVisibility(mDelete);
+
+        checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
+                if(compoundButton.isChecked())
+                    checked.add(value);
+                else
+                    checked.remove(value);
+                Log.e("DEBUG",checked.toString());
             }
         });
 

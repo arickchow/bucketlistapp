@@ -32,11 +32,5 @@
         android:text="@string/list_empty"
         android:textColor="?android:textColorSecondary" />
 
-    <ListView
-        android:id="@android:id/list"
-        android:animateLayoutChanges="true"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent">
-    </ListView>
 
 </FrameLayout>
